@@ -1,0 +1,12 @@
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\bin\Debug\net10.0\CalculatorLibrary.deps.json
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\bin\Debug\net10.0\CalculatorLibrary.dll
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\bin\Debug\net10.0\CalculatorLibrary.pdb
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.AssemblyInfoInputs.cache
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.AssemblyInfo.cs
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.csproj.CoreCompileInputs.cache
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.sourcelink.json
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.dll
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\refint\CalculatorLibrary.dll
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\CalculatorLibrary.pdb
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab1\CalculatorLibrary\obj\Debug\net10.0\ref\CalculatorLibrary.dll
