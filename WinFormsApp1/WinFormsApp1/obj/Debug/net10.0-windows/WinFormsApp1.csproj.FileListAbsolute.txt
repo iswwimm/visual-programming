@@ -12,3 +12,4 @@ D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab2\WinFormsApp1\WinFormsA
 D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab2\WinFormsApp1\WinFormsApp1\obj\Debug\net10.0-windows\WinFormsApp1.pdb
 D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab2\WinFormsApp1\WinFormsApp1\obj\Debug\net10.0-windows\WinFormsApp1.genruntimeconfig.cache
 D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab2\WinFormsApp1\WinFormsApp1\obj\Debug\net10.0-windows\ref\WinFormsApp1.dll
+D:\Politechnika Poz\4 semestr\programowanie-wizualne\lab2\WinFormsApp1\WinFormsApp1\obj\Debug\net10.0-windows\WinFormsApp1.sourcelink.json

@@ -54,6 +54,6 @@ public partial class FormKomputer : Form
 
     private void rbHDD_CheckedChanged(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        // Puste
     }
 }
