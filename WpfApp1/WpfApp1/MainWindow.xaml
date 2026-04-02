@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Margin="10">
+            <RadioButton Name="rb90" Content="90°" GroupName="Rotate"/>
+            <RadioButton Name="rb180" Content="180°" GroupName="Rotate"/>
+            <RadioButton Name="rb270" Content="270°" GroupName="Rotate"/>
+        
+            <Button Name="btnRotate" Content="Rotate" Margin="0,10,0,5" Click="BtnRotate_Click"/>
+            <Button Name="btnInvert" Content="Invert Colors" Margin="0,5" Click="BtnInvert_Click"/>
+            <Button Name="btnUpsideDown" Content="Upside Down" Margin="0,5" Click="BtnUpsideDown_Click"/>
+            <Button Name="btnOnlyGreen" Content="Only Green" Margin="0,5" Click="BtnOnlyGreen_Click"/>
+            <Button Name="btnLoad" Content="Load" Margin="0,20,0,5" Click="BtnLoad_Click"/>
+        </StackPanel>
+
+        <Image Name="imgDisplay" Grid.Column="1" Margin="10" Stretch="Uniform"/>
     </Grid>
 </Window>

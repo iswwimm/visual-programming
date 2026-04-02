@@ -1,23 +1,46 @@
-﻿using System.Text;
+﻿using Microsoft.Win32;
+using System.Drawing;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    private Bitmap _currentBitmap;
+
+    public MainWindow() { InitializeComponent(); }
+    
+    private void RefreshImage()
     {
-        InitializeComponent();
+        if (_currentBitmap == null) return;
+        using (MemoryStream ms = new MemoryStream())
+        {
+            _currentBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            ms.Seek(0, SeekOrigin.Begin);
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.StreamSource = ms;
+            bi.CacheOption = BitmapCacheOption.OnLoad;
+            bi.EndInit();
+            imgDisplay.Source = bi;
+        }
     }
+
+    private void BtnLoad_Click(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog op = new OpenFileDialog();
+        op.Filter = "BMP Files (*.bmp)|*.bmp";
+        if (op.ShowDialog() == true)
+        {
+            _currentBitmap = new Bitmap(op.FileName);
+            RefreshImage();
+        }
+    }
+    
+    private void BtnRotate_Click(object sender, RoutedEventArgs e) { }
+    private void BtnInvert_Click(object sender, RoutedEventArgs e) { }
+    private void BtnUpsideDown_Click(object sender, RoutedEventArgs e) { }
+    private void BtnOnlyGreen_Click(object sender, RoutedEventArgs e) { }
 }
