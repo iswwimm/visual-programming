@@ -42,5 +42,20 @@ public partial class MainWindow : Window
     private void BtnRotate_Click(object sender, RoutedEventArgs e) { }
     private void BtnInvert_Click(object sender, RoutedEventArgs e) { }
     private void BtnUpsideDown_Click(object sender, RoutedEventArgs e) { }
-    private void BtnOnlyGreen_Click(object sender, RoutedEventArgs e) { }
+    private void BtnOnlyGreen_Click(object sender, RoutedEventArgs e)
+    {
+        if (_currentBitmap == null) return;
+        for (int y = 0; y < _currentBitmap.Height; y++)
+        {
+            for (int x = 0; x < _currentBitmap.Width; x++)
+            {
+                Color c = _currentBitmap.GetPixel(x, y);
+                if (!(c.G > c.R && c.G > c.B))
+                {
+                    _currentBitmap.SetPixel(x, y, Color.Black);
+                }
+            }
+        }
+        RefreshImage();
+    }
 }
