@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "84DQsoNDeNI=",
+  "dgSpecHash": "jiaVLRqMRr4=",
   "success": true,
   "projectFilePath": "D:\\Politechnika Poz\\4 semestr\\programowanie-wizualne\\lab4\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\iswwi\\.nuget\\packages\\system.drawing.common\\11.0.0-preview.2.26159.112\\system.drawing.common.11.0.0-preview.2.26159.112.nupkg.sha512",
     "C:\\Users\\iswwi\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.25\\microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
     "C:\\Users\\iswwi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.25\\microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
     "C:\\Users\\iswwi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.25\\microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512",

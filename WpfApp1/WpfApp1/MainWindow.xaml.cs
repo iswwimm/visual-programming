@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System.Drawing;
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -30,8 +29,9 @@ public partial class MainWindow : Window
 
     private void BtnLoad_Click(object sender, RoutedEventArgs e)
     {
-        OpenFileDialog op = new OpenFileDialog();
+        Microsoft.Win32.OpenFileDialog op = new Microsoft.Win32.OpenFileDialog();
         op.Filter = "BMP Files (*.bmp)|*.bmp";
+        
         if (op.ShowDialog() == true)
         {
             _currentBitmap = new Bitmap(op.FileName);
