@@ -39,7 +39,14 @@ public partial class MainWindow : Window
         }
     }
     
-    private void BtnRotate_Click(object sender, RoutedEventArgs e) { }
+    private void BtnRotate_Click(object sender, RoutedEventArgs e)
+    {
+        if (_currentBitmap == null) return;
+        if (rb90.IsChecked == true) _currentBitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+        else if (rb180.IsChecked == true) _currentBitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
+        else if (rb270.IsChecked == true) _currentBitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
+        RefreshImage();
+    }
     private void BtnInvert_Click(object sender, RoutedEventArgs e) { }
     private void BtnUpsideDown_Click(object sender, RoutedEventArgs e) { }
     private void BtnOnlyGreen_Click(object sender, RoutedEventArgs e) { }
