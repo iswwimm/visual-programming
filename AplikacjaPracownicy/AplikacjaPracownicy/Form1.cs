@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Text.Json;
 
 namespace AplikacjaPracownicy
 {
@@ -76,5 +77,68 @@ namespace AplikacjaPracownicy
                 }
             }
         }
+        private void ZapiszDoJSON(string filePath)
+        {
+            try
+            {
+                List<Pracownik> listaDoZapisu = _listaPracownikow.ToList();
+                
+                JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+                string jsonString = JsonSerializer.Serialize(listaDoZapisu, options);
+                
+                File.WriteAllText(filePath, jsonString);
+                
+                MessageBox.Show("Pomyślnie zapisano do pliku JSON!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd podczas zapisu JSON:\n{ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void buttonZapiszJSON_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Plik JSON|*.json" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ZapiszDoJSON(sfd.FileName);
+                }
+            }
+        }
+        
+        private void WczytajZJSON(string filePath)
+        {
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                List<Pracownik> wczytanaLista = JsonSerializer.Deserialize<List<Pracownik>>(jsonString);
+                
+                if (wczytanaLista != null)
+                {
+                    _listaPracownikow.Clear();
+                    foreach (var pracownik in wczytanaLista)
+                    {
+                        _listaPracownikow.Add(pracownik);
+                    }
+                }
+                MessageBox.Show("Pomyślnie wczytano dane z pliku JSON!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd podczas odczytu pliku JSON:\n{ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void buttonWczytajJSON_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Plik JSON|*.json" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    WczytajZJSON(ofd.FileName);
+                }
+            }
+        }
+        
     }
 }
