@@ -10,6 +10,8 @@
         private System.Windows.Forms.Button buttonWczytaj;
         private System.Windows.Forms.Button buttonZapiszJSON;
         private System.Windows.Forms.Button buttonWczytajJSON;
+        private System.Windows.Forms.Button buttonZapiszXML;
+        private System.Windows.Forms.Button buttonWczytajXML;
 
         protected override void Dispose(bool disposing)
         {
@@ -29,6 +31,8 @@
             this.buttonWczytaj = new System.Windows.Forms.Button();
             this.buttonZapiszJSON = new System.Windows.Forms.Button();
             this.buttonWczytajJSON = new System.Windows.Forms.Button();
+            this.buttonZapiszXML = new System.Windows.Forms.Button();
+            this.buttonWczytajXML = new System.Windows.Forms.Button();
             
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +76,22 @@
             this.buttonWczytaj.UseVisualStyleBackColor = true;
             this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
             
+            this.buttonZapiszXML.Location = new System.Drawing.Point(244, 400);
+            this.buttonZapiszXML.Name = "buttonZapiszXML";
+            this.buttonZapiszXML.Size = new System.Drawing.Size(110, 35);
+            this.buttonZapiszXML.TabIndex = 5;
+            this.buttonZapiszXML.Text = "Zapisz XML";
+            this.buttonZapiszXML.UseVisualStyleBackColor = true;
+            this.buttonZapiszXML.Click += new System.EventHandler(this.buttonZapiszXML_Click);
+            
+            this.buttonWczytajXML.Location = new System.Drawing.Point(360, 400);
+            this.buttonWczytajXML.Name = "buttonWczytajXML";
+            this.buttonWczytajXML.Size = new System.Drawing.Size(110, 35);
+            this.buttonWczytajXML.TabIndex = 6;
+            this.buttonWczytajXML.Text = "Odczyt XML";
+            this.buttonWczytajXML.UseVisualStyleBackColor = true;
+            this.buttonWczytajXML.Click += new System.EventHandler(this.buttonWczytajXML_Click);
+            
             this.buttonZapiszJSON.Location = new System.Drawing.Point(476, 400);
             this.buttonZapiszJSON.Name = "buttonZapiszJSON";
             this.buttonZapiszJSON.Size = new System.Drawing.Size(110, 35);
@@ -88,10 +108,11 @@
             this.buttonWczytajJSON.UseVisualStyleBackColor = true;
             this.buttonWczytajJSON.Click += new System.EventHandler(this.buttonWczytajJSON_Click);
             
-            // Form1
             this.ClientSize = new System.Drawing.Size(840, 461);
             this.Controls.Add(this.buttonWczytajJSON);
             this.Controls.Add(this.buttonZapiszJSON);
+            this.Controls.Add(this.buttonWczytajXML);
+            this.Controls.Add(this.buttonZapiszXML);
             this.Controls.Add(this.buttonWczytaj);
             this.Controls.Add(this.buttonZapisz);
             this.Controls.Add(this.buttonUsun);

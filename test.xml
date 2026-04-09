@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPracownik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pracownik>
+    <Id>2</Id>
+    <Imie>yy</Imie>
+    <Nazwisko>rrerw</Nazwisko>
+    <Wiek>23</Wiek>
+    <Stanowisko>Księgowy</Stanowisko>
+  </Pracownik>
+</ArrayOfPracownik>
