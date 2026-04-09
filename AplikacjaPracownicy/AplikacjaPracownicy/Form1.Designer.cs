@@ -8,6 +8,8 @@
         private System.Windows.Forms.Button buttonUsun;
         private System.Windows.Forms.Button buttonZapisz;
         private System.Windows.Forms.Button buttonWczytaj;
+        private System.Windows.Forms.Button buttonZapiszXML;
+        private System.Windows.Forms.Button buttonWczytajXML;
 
         protected override void Dispose(bool disposing)
         {
@@ -25,10 +27,12 @@
             this.buttonUsun = new System.Windows.Forms.Button();
             this.buttonZapisz = new System.Windows.Forms.Button();
             this.buttonWczytaj = new System.Windows.Forms.Button();
+            this.buttonZapiszXML = new System.Windows.Forms.Button();
+            this.buttonWczytajXML = new System.Windows.Forms.Button();
+            
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             
-            // dataGridView1
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
@@ -36,7 +40,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(560, 380);
             this.dataGridView1.TabIndex = 0;
             
-            // buttonDodaj
             this.buttonDodaj.Location = new System.Drawing.Point(590, 12);
             this.buttonDodaj.Name = "buttonDodaj";
             this.buttonDodaj.Size = new System.Drawing.Size(120, 35);
@@ -45,7 +48,6 @@
             this.buttonDodaj.UseVisualStyleBackColor = true;
             this.buttonDodaj.Click += new System.EventHandler(this.buttonDodaj_Click);
             
-            // buttonUsun
             this.buttonUsun.Location = new System.Drawing.Point(590, 60);
             this.buttonUsun.Name = "buttonUsun";
             this.buttonUsun.Size = new System.Drawing.Size(120, 35);
@@ -54,7 +56,6 @@
             this.buttonUsun.UseVisualStyleBackColor = true;
             this.buttonUsun.Click += new System.EventHandler(this.buttonUsun_Click);
             
-            // buttonZapisz
             this.buttonZapisz.Location = new System.Drawing.Point(12, 400);
             this.buttonZapisz.Name = "buttonZapisz";
             this.buttonZapisz.Size = new System.Drawing.Size(120, 35);
@@ -63,8 +64,7 @@
             this.buttonZapisz.UseVisualStyleBackColor = true;
             this.buttonZapisz.Click += new System.EventHandler(this.buttonZapisz_Click);
             
-            // buttonWczytaj
-            this.buttonWczytaj.Location = new System.Drawing.Point(150, 400);
+            this.buttonWczytaj.Location = new System.Drawing.Point(138, 400);
             this.buttonWczytaj.Name = "buttonWczytaj";
             this.buttonWczytaj.Size = new System.Drawing.Size(120, 35);
             this.buttonWczytaj.TabIndex = 4;
@@ -72,8 +72,26 @@
             this.buttonWczytaj.UseVisualStyleBackColor = true;
             this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
             
-            // Form1
+            this.buttonZapiszXML.Location = new System.Drawing.Point(264, 400); 
+            this.buttonZapiszXML.Name = "buttonZapiszXML";
+            this.buttonZapiszXML.Size = new System.Drawing.Size(120, 35);
+            this.buttonZapiszXML.TabIndex = 5;
+            this.buttonZapiszXML.Text = "Zapisz do XML";
+            this.buttonZapiszXML.UseVisualStyleBackColor = true;
+            this.buttonZapiszXML.Click += new System.EventHandler(this.buttonZapiszXML_Click); 
+            
+            this.buttonWczytajXML.Location = new System.Drawing.Point(390, 400);
+            this.buttonWczytajXML.Name = "buttonWczytajXML";
+            this.buttonWczytajXML.Size = new System.Drawing.Size(120, 35);
+            this.buttonWczytajXML.TabIndex = 6;
+            this.buttonWczytajXML.Text = "Odczyt z XML";
+            this.buttonWczytajXML.UseVisualStyleBackColor = true;
+            this.buttonWczytajXML.Click += new System.EventHandler(this.buttonWczytajXML_Click);
+            
+
             this.ClientSize = new System.Drawing.Size(734, 461);
+            this.Controls.Add(this.buttonWczytajXML); 
+            this.Controls.Add(this.buttonZapiszXML);  
             this.Controls.Add(this.buttonWczytaj);
             this.Controls.Add(this.buttonZapisz);
             this.Controls.Add(this.buttonUsun);

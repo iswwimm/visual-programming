@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using AplikacjaPracownicy;
+using System.Xml.Serialization;
 
 namespace AplikacjaPracownicy
 {
@@ -73,6 +75,70 @@ namespace AplikacjaPracownicy
                             _listaPracownikow.Add(pracownik);
                         }
                     }
+                }
+            }
+        }
+        private void ZapiszDoXML(string filePath)
+        {
+            try
+            {
+               
+                List<Pracownik> listaDoZapisu = _listaPracownikow.ToList();
+                
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Pracownik>));
+                using (TextWriter writer = new StreamWriter(filePath))
+                {
+                    serializer.Serialize(writer, listaDoZapisu);
+                }
+                MessageBox.Show("Pomyślnie zapisano do pliku XML!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd podczas zapisu XML:\n{ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonZapiszXML_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Plik XML|*.xml" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ZapiszDoXML(sfd.FileName);
+                }
+            }
+        }
+        
+        private void WczytajZXML(string filePath)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Pracownik>));
+                using (TextReader reader = new StreamReader(filePath))
+                {
+                    List<Pracownik> wczytanaLista = (List<Pracownik>)serializer.Deserialize(reader);
+                    
+                    _listaPracownikow.Clear();
+                    foreach (var pracownik in wczytanaLista)
+                    {
+                        _listaPracownikow.Add(pracownik);
+                    }
+                }
+                MessageBox.Show("Pomyślnie wczytano dane z pliku XML!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd podczas odczytu pliku XML:\n{ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonWczytajXML_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Plik XML|*.xml" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    WczytajZXML(ofd.FileName);
                 }
             }
         }

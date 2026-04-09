@@ -2,6 +2,7 @@ using System;
 
 namespace AplikacjaPracownicy
 {
+    [Serializable]
     public class Pracownik
     {
         private static int _nastepneId = 1;
