@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="images\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\croc.jpg" />
+      <Resource Include="images\croc.jpg" />
+      <None Remove="Images\hyrax.jpg" />
+      <Resource Include="images\hyrax.jpg" />
+      <None Remove="Images\szczop.jpg" />
+      <Resource Include="images\szczop.jpg" />
+      <None Remove="Images\trash.jpg" />
+      <Resource Include="images\trash.jpg" />
+    </ItemGroup>
+
+</Project>

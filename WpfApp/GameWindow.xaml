@@ -1,0 +1,18 @@
+<Window x:Class="WpfApp.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gra" Height="500" Width="500">
+    <DockPanel>
+        <TextBlock x:Name="ScoreText"
+                   Text="Punkty: 0"
+                   FontSize="20"
+                   Margin="10"
+                   DockPanel.Dock="Top"/>
+        
+        <TextBlock x:Name="TimeText"
+                   Text="Czas: 30"
+                   FontSize="20"
+                   Margin="10"/>
+        <Grid x:Name="GameGrid"/>
+    </DockPanel>
+</Window>
