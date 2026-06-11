@@ -1,0 +1,95 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BioSampleManager.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:BioSampleManager.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="BioSampleManager.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Menedżer Próbek Biologicznych"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid RowDefinitions="Auto, *">
+        
+        <Border Grid.Row="0" Background="#f0f0f0" Padding="10">
+            <StackPanel Orientation="Horizontal" Spacing="15">
+                
+                <Button Content="➕ Dodaj próbkę" Click="OnAddSampleClick" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,20,0"/>
+
+                <TextBlock Text="🔍 Szukaj:" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBox Text="{Binding SearchText}" Width="250" PlaceholderText="Wpisz nazwę lub opis..."/>
+                
+                <TextBlock Text="Typ:" VerticalAlignment="Center" FontWeight="Bold" Margin="20,0,0,0"/>
+                <ComboBox ItemsSource="{Binding AvailableFilters}" 
+                          SelectedItem="{Binding SelectedFilterType}" 
+                          Width="150" 
+                          PlaceholderText="Wszystkie"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" ColumnDefinitions="6*, 4*">
+            
+            <ListBox Grid.Column="0" 
+                     ItemsSource="{Binding Samples}" 
+                     SelectedItem="{Binding SelectedSample}" 
+                     Margin="10"
+                     Background="White">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:BiologicalSample">
+                        <Grid ColumnDefinitions="50, *, 100" Margin="5,10" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="0" Text="{Binding Id, StringFormat='#{0}'}" FontWeight="Bold" Foreground="Gray" VerticalAlignment="Center"/>
+                            
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
+                                <TextBlock Text="{Binding Notes}" Foreground="DarkGray" TextTrimming="CharacterEllipsis" MaxWidth="300" />
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding Type}" FontWeight="SemiBold" Foreground="SteelBlue" HorizontalAlignment="Right"/>
+                                <TextBlock Text="{Binding CollectionDate, StringFormat='{}{0:dd.MM.yyyy}'}" FontSize="12" Foreground="Gray" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" Margin="0,10,10,10" CornerRadius="8" Padding="20" Background="#fafafa">
+                <Grid>
+                    <TextBlock Text="Wybierz próbkę z listy, aby zobaczyć kod QR." 
+                               Foreground="Gray" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               IsVisible="{Binding SelectedSample, Converter={x:Static ObjectConverters.IsNull}}"/>
+                    
+                    <StackPanel Spacing="10" IsVisible="{Binding SelectedSample, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <TextBlock Text="Szczegóły próbki" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" />
+                        
+                        <TextBlock Text="{Binding SelectedSample.Name}" FontSize="18" Foreground="SteelBlue" FontWeight="Bold" />
+                        <TextBlock Text="{Binding SelectedSample.Type, StringFormat='Typ: {0}'}" FontSize="14" />
+                        <TextBlock Text="{Binding SelectedSample.CollectionDate, StringFormat='Pobrano: {0:dd MMMM yyyy}'}" FontSize="14" />
+                        
+                        <TextBlock Text="Uwagi:" FontWeight="Bold" Margin="0,10,0,0"/>
+                        <TextBlock Text="{Binding SelectedSample.Notes}" TextWrapping="Wrap" MinHeight="60" />
+                        
+                        <Separator Margin="0,10"/>
+                        
+                        <Image Source="{Binding QrCodeImage}" 
+                               Width="180" Height="180" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,10" />
+                        
+                        <Button Content="💾 Eksportuj kod QR (PNG)" 
+                                Command="{Binding ExportQrCodeCommand}" 
+                                HorizontalAlignment="Center" 
+                                Padding="15,8"
+                                Background="SteelBlue"
+                                Foreground="White"
+                                FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BioSampleManager.ViewModels"
+        x:Class="BioSampleManager.Views.AddSampleWindow"
+        x:DataType="vm:AddSampleViewModel"
+        Title="Dodaj nową próbkę"
+        Width="400" Height="350"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+
+    <Border Padding="20">
+        <StackPanel Spacing="15">
+            <TextBlock Text="Wprowadź dane próbki" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBox Text="{Binding Name}" PlaceholderText="Nazwa próbki (wymagane)" />
+            
+            <ComboBox ItemsSource="{Binding AvailableTypes}" 
+                      SelectedItem="{Binding SelectedType}" 
+                      HorizontalAlignment="Stretch"/>
+            
+            <TextBox Text="{Binding Notes}" 
+                     PlaceholderText="Dodatkowe uwagi (opcjonalnie)" 
+                     Height="80" 
+                     AcceptsReturn="True" 
+                     TextWrapping="Wrap"/>
+
+            <Grid ColumnDefinitions="*, *" Margin="0,15,0,0">
+                <Button Grid.Column="0" Content="Anuluj" Command="{Binding CancelCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,0,5,0"/>
+                <Button Grid.Column="1" Content="Zapisz" Command="{Binding SaveCommand}" Background="SteelBlue" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5,0,0,0"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
