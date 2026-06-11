@@ -1,0 +1,110 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Lab9.MainWindow"
+        Title="Wniosek o egzamin komisyjny" 
+        Width="850" Height="750"
+        Background="#121212"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Styles>
+        <Style Selector="TextBlock.Label">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#B0B0B0"/>
+            <Setter Property="Margin" Value="0,12,0,4"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="MinHeight" Value="35"/>
+        </Style>
+        <Style Selector="TextBox:focus /template/ Border">
+            <Setter Property="BorderBrush" Value="#4A90E2"/>
+        </Style>
+    </Window.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="30" Spacing="0">
+            
+            <TextBlock Text="WNIOSEK O EGZAMIN KOMISYJNY" FontSize="22" FontWeight="Bold" Foreground="#4A90E2" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+            <Border Background="#1A1A1A" BorderBrush="#2D2D2D" BorderThickness="1" Padding="20" Margin="0,0,0,25" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="Wczytaj istniejący wniosek z bazy danych" FontWeight="Bold" Foreground="#FFFFFF" Margin="0,0,0,10"/>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <ComboBox Grid.Column="0" x:Name="WnioskiComboBox" HorizontalAlignment="Stretch" Margin="0,0,15,0" PlaceholderText="Rozwiń listę zapisanych wniosków..." Background="#252525" Foreground="White"/>
+                        <Button Grid.Column="1" x:Name="LoadSelectedButton" Content="Wczytaj wybrany" Click="LoadSelectedButton_Click" Background="#E67E22" Foreground="White" FontWeight="Bold" CornerRadius="6" Padding="15,8"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnDefinitions="*, 30, *">
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Classes="Label" Text="1. Numer albumu:"/>
+                    <TextBox x:Name="Field1_TextBox" />
+
+                    <TextBlock Classes="Label" Text="2. Nazwisko i imię:"/>
+                    <TextBox x:Name="Field2_TextBox" />
+
+                    <TextBlock Classes="Label" Text="3. Adres e-mail, telefon:"/>
+                    <TextBox x:Name="Field3_TextBox" />
+
+                    <TextBlock Classes="Label" Text="4. Kierunek studiów:"/>
+                    <TextBox x:Name="Field4_TextBox" />
+
+                    <TextBlock Classes="Label" Text="5. Stopień studiów:"/>
+                    <TextBox x:Name="Field5_TextBox" />
+
+                    <TextBlock Classes="Label" Text="6. Semestr:"/>
+                    <TextBox x:Name="Field6_TextBox" />
+
+                    <TextBlock Classes="Label" Text="7. Data złożenia (Poznań, dnia):"/>
+                    <TextBox x:Name="Field7_TextBox" />
+
+                    <TextBlock Classes="Label" Text="8. Dziekan Wydziału:"/>
+                    <TextBox x:Name="Field8_TextBox" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Classes="Label" Text="9. Nazwa przedmiotu:"/>
+                    <TextBox x:Name="Field9_TextBox" />
+
+                    <TextBlock Classes="Label" Text="10. Prowadzący przedmiot:"/>
+                    <TextBox x:Name="Field10_TextBox" />
+
+                    <TextBlock Classes="Label" Text="11. Uzasadnienie wniosku:"/>
+                    <TextBox x:Name="Field11_TextBox" Height="78" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
+
+                    <TextBlock Classes="Label" Text="12. Obserwator (Wskazuję / nie wskazuję):"/>
+                    <TextBox x:Name="Field12_TextBox" />
+
+                    <TextBlock Classes="Label" Text="13. Termin egzaminu (Data):"/>
+                    <TextBox x:Name="Field13_TextBox" />
+
+                    <TextBlock Classes="Label" Text="14. Godzina egzaminu:"/>
+                    <TextBox x:Name="Field14_TextBox" />
+
+                    <TextBlock Classes="Label" Text="15. Sala:"/>
+                    <TextBox x:Name="Field15_TextBox" />
+                </StackPanel>
+            </Grid>
+
+            <Border Background="#1A1A1A" BorderBrush="#2D2D2D" BorderThickness="1" Padding="15" Margin="0,30,0,0" CornerRadius="8">
+                <StackPanel>
+                    <Grid ColumnDefinitions="*, *">
+                        <Button Grid.Column="0" x:Name="LoadButton" Content="Wczytaj ostatni wpis" Click="LoadButton_Click" Background="#34495E" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,0,10,0" CornerRadius="6" Padding="0,12"/>
+                        <Button Grid.Column="1" x:Name="SaveButton" Content="Zapisz nowy do bazy" Click="SaveButton_Click" Background="#27AE60" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,0,0,0" CornerRadius="6" Padding="0,12"/>
+                    </Grid>
+                    
+                    <TextBlock x:Name="StatusTextBlock" Margin="0,15,0,0" Foreground="#2ECC71" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
