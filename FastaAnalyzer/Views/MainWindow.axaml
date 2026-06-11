@@ -1,0 +1,139 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FastaAnalyzer.ViewModels"
+        xmlns:m="using:FastaAnalyzer.Models"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        x:Class="FastaAnalyzer.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="FASTA Analyzer Pro" Width="1050" Height="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F4F6">
+
+    <Design.DataContext>
+        <vm:MainViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Border.Card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BoxShadow" Value="0 4 6 0 #0D000000"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto, *">
+        
+        <Border Grid.Row="0" Background="#111827" Padding="20,15">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <PathIcon Data="M20 7h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM9 4h6v3H9V4zm11 16H4V9h16v11z" Foreground="#3B82F6" Width="24" Height="24" Margin="0,0,10,0"/>
+                    <TextBlock Text="FASTA Analyzer" Foreground="White" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="Wczytaj plik FASTA" Click="OnLoadFileClick" 
+                            Background="#3B82F6" Foreground="White" FontWeight="SemiBold" CornerRadius="6" Padding="15,8" Margin="0,0,12,0"/>
+                    <Button Content="CSV" Click="OnExportCsvClick" 
+                            Background="#374151" Foreground="White" CornerRadius="6" Padding="15,8" Margin="0,0,12,0"
+                            IsEnabled="{Binding Records.Count, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                    <Button Content="JSON" Click="OnExportJsonClick" 
+                            Background="#374151" Foreground="White" CornerRadius="6" Padding="15,8"
+                            IsEnabled="{Binding Records.Count, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" ColumnDefinitions="320, *" Margin="20">
+            
+            <Border Grid.Column="0" Classes="Card" Padding="10" Margin="0,0,20,0">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Wczytane sekwencje" FontSize="16" FontWeight="SemiBold" Foreground="#374151" Margin="10,5,10,15"/>
+                    <ListBox ItemsSource="{Binding Records}" SelectedItem="{Binding SelectedRecord}" 
+                             Background="Transparent" BorderThickness="0" CornerRadius="8">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="m:FastaRecord">
+                                <StackPanel Margin="5,8">
+                                    <TextBlock Text="{Binding Header}" FontWeight="Medium" Foreground="#111827" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="{Binding Length, StringFormat='{}Długość: {0} bp'}" FontSize="12" Foreground="#6B7280" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <ScrollViewer Grid.Column="1">
+                <StackPanel IsVisible="{Binding SelectedRecord, Converter={x:Static ObjectConverters.IsNotNull}}">
+                    
+                    <TextBlock Text="Analiza wybranej sekwencji" FontSize="22" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,20"/>
+                    
+                    <UniformGrid Columns="3" Rows="1" Margin="0,0,0,20">
+                        <Border Classes="Card" Margin="0,0,10,0">
+                            <StackPanel>
+                                <TextBlock Text="ZAWARTOŚĆ GC" FontSize="14" FontWeight="SemiBold" Foreground="#6B7280"/>
+                                <TextBlock Text="{Binding SelectedRecord.GcContent, FallbackValue='0', TargetNullValue='0', StringFormat='{}{0}%'}" 
+                                           FontSize="32" FontWeight="Bold" Foreground="#3B82F6" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Classes="Card" Margin="10,0,10,0">
+                            <StackPanel>
+                                <TextBlock Text="LICZBA KODONÓW" FontSize="14" FontWeight="SemiBold" Foreground="#6B7280"/>
+                                <TextBlock Text="{Binding SelectedRecord.CodonsCount, FallbackValue='0', TargetNullValue='0'}" 
+                                           FontSize="32" FontWeight="Bold" Foreground="#10B981" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Classes="Card" Margin="10,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="DŁUGOŚĆ CAŁKOWITA" FontSize="14" FontWeight="SemiBold" Foreground="#6B7280"/>
+                                <TextBlock Text="{Binding SelectedRecord.Length, FallbackValue='0', TargetNullValue='0', StringFormat='{}{0} bp'}" 
+                                           FontSize="32" FontWeight="Bold" Foreground="#8B5CF6" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <Grid ColumnDefinitions="*, *">
+                        <Border Grid.Column="0" Classes="Card" Margin="0,0,10,0">
+                            <StackPanel>
+                                <TextBlock Text="Zliczenia nukleotydów" FontSize="16" FontWeight="SemiBold" Foreground="#111827" Margin="0,0,0,22"/>
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,12">
+                                    <TextBlock Grid.Column="0" Text="Adenina (A)" Foreground="#4B5563"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CountA}" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,12">
+                                    <TextBlock Grid.Column="0" Text="Tymina (T)" Foreground="#4B5563"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CountT}" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,12">
+                                    <TextBlock Grid.Column="0" Text="Guanina (G)" Foreground="#4B5563"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CountG}" FontWeight="Bold"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,12">
+                                    <TextBlock Grid.Column="0" Text="Cytozyna (C)" Foreground="#4B5563"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CountC}" FontWeight="Bold"/>
+                                </Grid>
+                                <Rectangle Height="1" Fill="#E5E7EB" Margin="0,5,0,17"/>
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <TextBlock Grid.Column="0" Text="Niejednoznaczne (N)" Foreground="#9CA3AF"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CountN}" FontWeight="Bold" Foreground="#9CA3AF"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Classes="Card" Margin="10,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Dystrybucja" FontSize="16" FontWeight="SemiBold" Foreground="#111827" Margin="0,0,0,15"/>
+                                <lvc:CartesianChart Series="{Binding ChartSeries}" XAxes="{Binding ChartXAxes}" Height="200"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
