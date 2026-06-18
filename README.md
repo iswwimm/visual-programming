@@ -1,4 +1,4 @@
-# BioNotepad 
+# BioNotepad
 
 BioNotepad to desktopowy notatnik analityczny zaprojektowany z myślą o bioinformatykach i biologach molekularnych. Aplikacja ułatwia zarządzanie sesjami eksperymentalnymi, logowanie postępów analizy, bezpieczne przechowywanie plików wsadowych (np. `.fasta`, `.csv`) oraz generowanie końcowych raportów w formacie PDF.
 
@@ -27,3 +27,4 @@ Projekt został zrealizowany zgodnie z dobrymi praktykami inżynierii oprogramow
 3. Przywróć pakiety NuGet:
    ```bash
    dotnet restore
+   ```
