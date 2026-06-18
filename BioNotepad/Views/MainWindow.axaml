@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BioNotepad.ViewModels"
+        xmlns:views="using:BioNotepad.Views"
+        x:Class="BioNotepad.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="BioNotepad - Notatnik Analityczny"
+        Width="1000" Height="700">
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:SessionListViewModel}">
+            <views:SessionListView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SessionDetailViewModel}">
+            <views:SessionDetailView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <ContentControl Content="{Binding CurrentViewModel}" />
+
+</Window>
